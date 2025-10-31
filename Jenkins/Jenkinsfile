@@ -28,7 +28,7 @@ pipeline {
         sh '''
         ls
         cd aws_ec2_terraform
-        terraform ${params.ACTION} 
+        terraform plan
           #--auto-approve
         '''
       }

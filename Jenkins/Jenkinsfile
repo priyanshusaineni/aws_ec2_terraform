@@ -8,7 +8,7 @@ pipeline {
             steps {
                 sh '''
                 echo "==== Cleaning and Cloning Repo ===="
-                rm -rf /var/lib/jenkins/workspace/aws_ec2_terraform/*
+                rm -rf /var/lib/jenkins/workspace/ec2_crud/*
                 git clone https://github.com/priyanshusaineni/aws_ec2_terraform.git
                 '''
             }

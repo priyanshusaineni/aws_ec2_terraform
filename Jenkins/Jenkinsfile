@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  environment {
+        AWS_CREDS = credentials('AWS_CREDS')
+    }
   parameters {
     choice(name: 'ACTION', choices: ['plan', 'apply', 'destroy'], description: 'Terraform action to perform')
   }

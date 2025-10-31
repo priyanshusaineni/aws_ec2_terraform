@@ -18,13 +18,18 @@ pipeline {
         
         sh '''
           ls
+          cd aws_ec2_terraform
           terraform init
         '''
       }
     }
     stage('Terraform Execute') {
       steps {
-        sh "terraform ${params.ACTION} --auto-approve"
+        sh '''
+        ls
+        
+        terraform ${params.ACTION} --auto-approve
+        '''
       }
     }
   }

@@ -27,7 +27,7 @@ pipeline {
       steps {
         sh '''
         ls
-        
+        cd aws_ec2_terraform
         terraform ${params.ACTION} --auto-approve
         '''
       }

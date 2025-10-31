@@ -1,0 +1,23 @@
+pipeline {
+  agent any
+  parameters {
+    choice(name: 'ACTION', choices: ['plan', 'apply', 'destroy'], description: 'Terraform action to perform')
+  }
+  stages {
+    stage('Checkout') {
+      steps {
+        checkout scm
+      }
+    }
+    stage('Terraform Init') {
+      steps {
+        sh 'terraform init'
+      }
+    }
+    stage('Terraform Execute') {
+      steps {
+        sh "terraform ${params.ACTION} --auto-approve"
+      }
+    }
+  }
+}

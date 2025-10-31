@@ -1,0 +1,3 @@
+.terraform
+ec2_state_management
+.terraform.lock.hcl

@@ -8,6 +8,7 @@ pipeline {
         booleanParam(name: 'TF_IMPORT', defaultValue: false, description: 'Run terraform import')
         booleanParam(name: 'TF_PLAN', defaultValue: false, description: 'Run terraform plan')
         booleanParam(name: 'TF_APPLY', defaultValue: false, description: 'Run terraform apply')
+        string(name: 'INSTANCE_ID', defaultValue: '', description: 'EC2 instance ID for terraform import')
     }
     stages {
         stage('Prerequisite') {
@@ -35,11 +36,11 @@ pipeline {
                 expression { params.TF_IMPORT }
             }
             steps {
-                sh '''
+                sh """
                 cd aws_ec2_terraform
-                terraform import 'module.ec2_instance[0].aws_instance.this[0]' i-0cd75fe3850bab150
-                terraform import 'resource.aws_ec2_instance_state.example_stop[0]' i-0cd75fe3850bab150
-                '''
+                terraform import 'module.ec2_instance[0].aws_instance.this[0]' ${params.INSTANCE_ID}
+                terraform import 'resource.aws_ec2_instance_state.example_stop[0]' ${params.INSTANCE_ID}
+                """
             }
         }
         stage('Terraform Plan') {

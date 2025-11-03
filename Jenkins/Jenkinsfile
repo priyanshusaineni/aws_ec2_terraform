@@ -1,13 +1,16 @@
 pipeline {
-  agent any
-  environment {
+    agent any
+    environment {
         AWS_CREDS = credentials('AWS_CREDS')
     }
-  parameters {
-    choice(name: 'ACTION', choices: ['plan', 'apply', 'destroy'], description: 'Terraform action to perform')
-  }
-  stages {
-    stage('prerequisite') {
+    parameters {
+        booleanParam(name: 'TF_INIT', defaultValue: false, description: 'Run terraform init')
+        booleanParam(name: 'TF_IMPORT', defaultValue: false, description: 'Run terraform import')
+        booleanParam(name: 'TF_PLAN', defaultValue: false, description: 'Run terraform plan')
+        booleanParam(name: 'TF_APPLY', defaultValue: false, description: 'Run terraform apply')
+    }
+    stages {
+        stage('Prerequisite') {
             steps {
                 sh '''
                 echo "==== Cleaning and Cloning Repo ===="
@@ -16,25 +19,49 @@ pipeline {
                 '''
             }
         }
-    stage('Terraform Init') {
-      steps {
-        
-        sh '''
-          ls
-          cd aws_ec2_terraform
-          terraform init
-        '''
-      }
+        stage('Terraform Init') {
+            when {
+                expression { params.TF_INIT }
+            }
+            steps {
+                sh '''
+                cd aws_ec2_terraform
+                terraform init
+                '''
+            }
+        }
+        stage('Terraform Import') {
+            when {
+                expression { params.TF_IMPORT }
+            }
+            steps {
+                sh '''
+                cd aws_ec2_terraform
+                terraform import 'module.ec2_instance[0].aws_instance.this[0]' i-031f44979c719c140
+                '''
+            }
+        }
+        stage('Terraform Plan') {
+            when {
+                expression { params.TF_PLAN }
+            }
+            steps {
+                sh '''
+                cd aws_ec2_terraform
+                terraform plan
+                '''
+            }
+        }
+        stage('Terraform Apply') {
+            when {
+                expression { params.TF_APPLY }
+            }
+            steps {
+                sh '''
+                cd aws_ec2_terraform
+                terraform apply --auto-approve
+                '''
+            }
+        }
     }
-    stage('Terraform Execute') {
-      steps {
-        sh '''
-        ls
-        cd aws_ec2_terraform
-        terraform apply --auto-approve
-        '''
-      }
-
-    }
-  }
 }

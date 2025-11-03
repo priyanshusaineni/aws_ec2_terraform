@@ -37,5 +37,5 @@ resource "aws_instance" "example" {
 resource "aws_ec2_instance_state" "example_stop" {
   count       = var.deploy_module ? 1 : 0
   instance_id = aws_instance.example.id
-  state       = "stopped"
+  state       = "running"
 }

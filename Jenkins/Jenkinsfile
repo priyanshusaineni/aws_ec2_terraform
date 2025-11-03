@@ -37,7 +37,7 @@ pipeline {
             steps {
                 sh '''
                 cd aws_ec2_terraform
-                terraform import 'module.ec2_instance[0].aws_instance.this[0]' i-031f44979c719c140
+                terraform import 'module.ec2_instance[0].aws_instance.this[0]' i-0cd75fe3850bab150
                 '''
             }
         }

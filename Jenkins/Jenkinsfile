@@ -38,6 +38,7 @@ pipeline {
                 sh '''
                 cd aws_ec2_terraform
                 terraform import 'module.ec2_instance[0].aws_instance.this[0]' i-0cd75fe3850bab150
+                terraform import 'resource.aws_ec2_instance_state.example_stop[0]' i-0cd75fe3850bab150
                 '''
             }
         }

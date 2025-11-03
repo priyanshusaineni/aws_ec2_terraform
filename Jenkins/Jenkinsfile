@@ -38,8 +38,8 @@ pipeline {
             steps {
                 sh """
                 cd aws_ec2_terraform
-                terraform import 'module.ec2_instance[0].aws_instance.this[0]' ${params.INSTANCE_ID}
-                terraform import 'resource.aws_ec2_instance_state.example_stop[0]' ${params.INSTANCE_ID}
+                terraform import 'module.ec2_instance[0].aws_instance.this[0]' $INSTANCE_ID
+                terraform import 'resource.aws_ec2_instance_state.example_stop[0]' $INSTANCE_ID
                 """
             }
         }

@@ -6,9 +6,10 @@ pipeline {
     parameters {
         booleanParam(name: 'TF_INIT', defaultValue: false, description: 'Run terraform init')
         booleanParam(name: 'TF_IMPORT', defaultValue: false, description: 'Run terraform import')
+        string(name: 'INSTANCE_ID', defaultValue: '', description: 'EC2 instance ID for terraform import')
         booleanParam(name: 'TF_PLAN', defaultValue: false, description: 'Run terraform plan')
         booleanParam(name: 'TF_APPLY', defaultValue: false, description: 'Run terraform apply')
-        string(name: 'INSTANCE_ID', defaultValue: '', description: 'EC2 instance ID for terraform import')
+        booleanParam(name: 'TF_DESTROY', defaultValue: false, description: 'Run terraform destroy')
     }
     stages {
         stage('Prerequisite') {
@@ -62,6 +63,17 @@ pipeline {
                 sh '''
                 cd aws_ec2_terraform
                 terraform apply --auto-approve
+                '''
+            }
+        }
+        stage('Terraform Destroy'){
+            when {
+                expression {params.TF_DESTROY}
+            }
+            steps{
+                sh '''
+                cd aws_ec2_terraform
+                terraform destroy --auto-approve
                 '''
             }
         }

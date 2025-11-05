@@ -17,7 +17,9 @@ pipeline {
                 sh '''
                 echo "==== Cleaning and Cloning Repo ===="
                 rm -rf /var/lib/jenkins/workspace/ec2_crud/*
+                ls
                 git clone https://github.com/priyanshusaineni/aws_ec2_terraform.git
+                ls
                 '''
             }
         }

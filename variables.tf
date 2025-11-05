@@ -34,7 +34,10 @@ variable "iam_instance_profile" {
     description = "IAM instance profile to launch the instance with."
     type = string
 }
-
+variable "state" {
+    description = "State to be set for the instance"
+    type = string
+}
 variable "ebs_block_devices" {
   description = "List of EBS block devices to attach to the EC2 instance"
   type = list(object({

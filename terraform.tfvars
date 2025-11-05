@@ -4,6 +4,7 @@ instance_type       = "t3.micro"
 key_name            = "aws_ec2_key_pair"
 security_group_ids  = ["sg-0a0cd5e4d1514e045"]
 subnet_id           = "subnet-004aa68bfe70a7672"
+state       = "stopped"
 iam_instance_profile = null
 ebs_block_devices = [
   {

@@ -10,7 +10,7 @@ module "ec2_instance" {
   vpc_security_group_ids = var.security_group_ids
   subnet_id              = var.subnet_id
   iam_instance_profile   = var.iam_instance_profile
-  monitoring             = true
+  monitoring             = var.monitoring
   tags                   = var.tags
 
 

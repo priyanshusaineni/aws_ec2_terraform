@@ -1,10 +1,11 @@
 ami                 = "ami-0bdd88bd06d16ba03"
-instance_type       = "t3.micro"
+instance_type       = "t3.small"
 # instance_name       = "my-ec2"
 key_name            = "aws_ec2_key_pair"
 security_group_ids  = ["sg-0a0cd5e4d1514e045"]
 subnet_id           = "subnet-004aa68bfe70a7672"
-state       = "stopped"
+monitoring             = true
+state       = "running"
 iam_instance_profile = null
 ebs_block_devices = [
   {

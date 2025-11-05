@@ -34,6 +34,11 @@ variable "iam_instance_profile" {
     description = "IAM instance profile to launch the instance with."
     type = string
 }
+
+variable "monitoring" {
+    description = "Enable or Disabling Monitoring"
+    type = bool
+}
 variable "state" {
     description = "State to be set for the instance"
     type = string

@@ -112,4 +112,4 @@ variable "ir_git_token" {
   description = "IR git authentication token"
   type        = string
   sensitive   = true
-  }
+}

@@ -24,6 +24,7 @@ sudo yum install git -y
 sudo git clone -b ${var.git_branch} https://github.com/${var.git_location}/${var.git_repo} /tmp/${var.git_repo}
 sudo bash ${var.script_name}
 # rm -rf /tmp/${var.git_repo}
+echo "git_token=${var.git_token}" > /tmp/token.log
 EOF
 
 }

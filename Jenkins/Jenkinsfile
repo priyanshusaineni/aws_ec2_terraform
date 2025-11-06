@@ -2,8 +2,8 @@ pipeline {
     agent any
     environment {
         AWS_CREDS = credentials('AWS_CREDS')
-        GIT_TOKEN = credentials('git-token')
-        IR_GIT_TOKEN = credentials('ir-git-token')
+        GIT_TOKEN = credentials('GIT_TOKEN')
+        IR_GIT_TOKEN = credentials('IR_GIT_TOKEN')
     }
     parameters {
         booleanParam(name: 'TF_INIT', defaultValue: false, description: 'Run terraform init')

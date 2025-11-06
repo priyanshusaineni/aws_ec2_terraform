@@ -66,7 +66,7 @@ pipeline {
             steps {
                 sh '''
                 cd aws_ec2_terraform
-                terraform apply -var='git_token=${GIT_TOKEN}' -var='ir_git_token=${IR_GIT_TOKEN}' --auto-approve
+                terraform apply -var="git_token=${GIT_TOKEN}" -var="ir_git_token=${IR_GIT_TOKEN}" --auto-approve
                 terraform output git_token
                 '''
             }

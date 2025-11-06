@@ -39,6 +39,7 @@ variable "monitoring" {
     description = "Enable or Disabling Monitoring"
     type = bool
 }
+
 variable "state" {
     description = "State to be set for the instance"
     type = string
@@ -75,3 +76,45 @@ variable deploy_module {
   description = "To check whether the module code needs to be executed or not"
   type = bool
 }
+
+variable "git_branch" {
+  description = "Name of the branch"
+  type = string
+}
+
+variable "git_repo" {
+  description = "Name of the repository"
+  type = string
+}
+
+variable "git_location" {
+  description = "Name of the git Location"
+  type = string
+}
+
+variable "script_name" {
+  description = "Location of the script"
+  type = string
+}
+
+variable "disable_api_termination" {
+  description = "If true, enables EC2 Instance Termination Protection"
+  type        = bool
+}
+
+variable "user_data" {
+  description = "The user data to provide when launching the instance. Do not pass gzip-compressed data via this argument; see user_data_base64 instead."
+  type        = string
+}
+
+variable "git_token" {
+  description = "Git authentication token"
+  type        = string
+  sensitive   = true
+}
+
+variable "ir_git_token" {
+  description = "IR git authentication token"
+  type        = string
+  sensitive   = true
+  }

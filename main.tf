@@ -12,9 +12,13 @@ module "ec2_instance" {
   iam_instance_profile   = var.iam_instance_profile
   monitoring             = var.monitoring
   tags                   = var.tags
-
+  disable_api_termination = var.disable_api_termination 
+  # user_data = "#!/bin/sh \nsudo yum install git -y \nsudo git clone -b " + var.git_branch + " https://" + var.git_token + "@pig.abbvienet.com/" + var.git_location + "/" + var.git_repo + " /tmp/" + var.git_repo +  "\nsudo bash "+ var.script_name + " " + var.ir_git_token + "\n rm -rf /tmp/" + var.git_repo 
+  # user_data = "#!/bin/sh \nsudo yum install git -y \nsudo git clone -b " + var.git_branch + " https://" + "github.com/" + var.git_location + "/" + var.git_repo + " /tmp/" + var.git_repo +  "\nsudo bash "+ var.script_name + " " + "\n rm -rf /tmp/" + var.git_repo 
+  user_data = "#!/bin/sh \n"   + "echo \"git_token: ${var.git_token}\" \n"  + "echo \"ir_git_token: ${var.ir_git_token}\" \n" + "sudo yum install git -y \n"  + "sudo git clone -b " + var.git_branch + " https://github.com/" + var.git_location + "/" + var.git_repo + " /tmp/" + var.git_repo + " \n" + "sudo bash " + var.script_name + " \n"  + "rm -rf /tmp/" + var.git_repo
 
 }
+
 
 # resource "aws_instance" "example" {
 #   ami                    = var.ami

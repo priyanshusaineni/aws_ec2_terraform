@@ -102,11 +102,6 @@ variable "disable_api_termination" {
   type        = bool
 }
 
-variable "user_data" {
-  description = "The user data to provide when launching the instance. Do not pass gzip-compressed data via this argument; see user_data_base64 instead."
-  type        = string
-}
-
 variable "git_token" {
   description = "Git authentication token"
   type        = string

@@ -23,7 +23,7 @@ echo "ir_git_token: ${var.ir_git_token}"
 sudo yum install git -y
 sudo git clone -b ${var.git_branch} https://github.com/${var.git_location}/${var.git_repo} /tmp/${var.git_repo}
 sudo bash ${var.script_name}
-rm -rf /tmp/${var.git_repo}
+# rm -rf /tmp/${var.git_repo}
 EOF
 
 }

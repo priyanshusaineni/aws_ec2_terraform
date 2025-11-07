@@ -16,6 +16,8 @@ module "ec2_instance" {
   # user_data = "#!/bin/sh \nsudo yum install git -y \nsudo git clone -b " + var.git_branch + " https://" + var.git_token + "@pig.abbvienet.com/" + var.git_location + "/" + var.git_repo + " /tmp/" + var.git_repo +  "\nsudo bash "+ var.script_name + " " + var.ir_git_token + "\n rm -rf /tmp/" + var.git_repo 
   # user_data = "#!/bin/sh \nsudo yum install git -y \nsudo git clone -b " + var.git_branch + " https://" + "github.com/" + var.git_location + "/" + var.git_repo + " /tmp/" + var.git_repo +  "\nsudo bash "+ var.script_name + " " + "\n rm -rf /tmp/" + var.git_repo 
   # user_data = "#!/bin/sh \n"   + "echo \"git_token: ${var.git_token}\" \n"  + "echo \"ir_git_token: ${var.ir_git_token}\" \n" + "sudo yum install git -y \n"  + "sudo git clone -b " + var.git_branch + " https://github.com/" + var.git_location + "/" + var.git_repo + " /tmp/" + var.git_repo + " \n" + "sudo bash " + var.script_name + " \n"  + "rm -rf /tmp/" + var.git_repo
+  
+  #IF the user_data option directly given a script then it would be difficult for us to pass the token while running the script as terraform variable. 
   user_data = <<-EOF
 #!/bin/sh
 echo "git_token: ${var.git_token}"
